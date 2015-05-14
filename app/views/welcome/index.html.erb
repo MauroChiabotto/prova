@@ -1,0 +1,22 @@
+<h1>HOME</h1>
+<p>UTENTI ISCRITTI:</p> 
+
+<font size="2">
+	<ul>
+	  	<% @utente.each do |t| %>
+	    	<li> <%= t.email %> </li>
+	  	<% end %>
+	</ul>
+</font>
+
+<%= link_to "Iscrizione", welcome_iscrizione_path %> 
+
+<p class="navbar-text pull-right">
+<% if user_signed_in? %>
+  Logged in as <strong><%= current_user.email %></strong>.
+  <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %> |
+  <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
+<% else %>
+  <%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %> |
+  <%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %>
+<% end %>
